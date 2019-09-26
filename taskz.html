@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Usimh JSON formate</title>
+	<link rel="stylesheet" type="text/css" href="varun.css">
+	<link rel="stylesheet" type="text/javascript" href="vinod.js">
+	<script type="text/javascript"></script>
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<input type="text" id="myInput" onkeyup="search()" placeholder="Search" >
+	<div class="show">
+		<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Show" >
+	</div><br><br>
+
+	<div class="container-fluid">
+		<table class="table table-bordered" id="myTable">
+			<thead class="table table-success">
+					<th>Abbr</th>
+					<th>Country</th>
+					<th>Alpha</th>
+			</thead>
+	<tbody id="data"></tbody> 
+		
+	</table>
+</div>
+
+
+
+</body>
+<script>
+
+
+	 fetch("https://restcountries.eu/rest/v2/all")
+		.then(res1=>{res1.json()
+			.then(data=>{
+						console.log(data);
+						//if(data.length > 0){
+							var temp="";
+							data.forEach((uuse)=>{
+
+								temp +="<tr>";
+								temp +="<td>"+uuse.alpha3Code+"</td>";
+								temp +="<td>"+uuse.name+"</td>";
+								temp +="<td>"+uuse.alpha2Code+"</td></tr>";
+							})
+						
+							document.getElementById("data").innerHTML = temp;
+						//}
+					})
+		})
+
+
+
+function search() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+
+
+		
+
+			
+	</script>
+
+
+</html>

@@ -1,0 +1,12 @@
+table,tr,th {
+	padding: 5px;
+}
+
+div.show{
+	float: right;
+}
+thead th{
+  position: sticky;
+  top:0;
+  
+  }
